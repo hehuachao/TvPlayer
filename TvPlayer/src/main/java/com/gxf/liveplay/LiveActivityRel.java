@@ -63,19 +63,19 @@ public class LiveActivityRel extends Activity {
     Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
-            if (message.what == 1) {
-                Map<String, String> versionInfo = (Map<String, String>) message.obj;
-                //版本检测
-                UpdateAppUtils.from(LiveActivityRel.this)
-                        .checkBy(UpdateAppUtils.CHECK_BY_VERSION_NAME) //更新检测方式，默认为VersionCode
-                        .serverVersionName(versionInfo.get("version"))
-                        .apkPath(HttpUtils.apkPath)
-                        .showNotification(true) //是否显示下载进度到通知栏，默认为true
-                        .updateInfo(versionInfo.get("updateInfo"))  //更新日志信息 String
-                        .downloadBy(UpdateAppUtils.DOWNLOAD_BY_APP) //下载方式：app下载、手机浏览器下载。默认app下载
-                        .isForce(false) //是否强制更新，默认false 强制更新情况下用户不同意更新则不能使用app
-                        .update();
-            }
+//            if (message.what == 1) {
+//                Map<String, String> versionInfo = (Map<String, String>) message.obj;
+//                //版本检测
+//                UpdateAppUtils.from(LiveActivityRel.this)
+//                        .checkBy(UpdateAppUtils.CHECK_BY_VERSION_NAME) //更新检测方式，默认为VersionCode
+//                        .serverVersionName(versionInfo.get("version"))
+//                        .apkPath(HttpUtils.apkPath)
+//                        .showNotification(true) //是否显示下载进度到通知栏，默认为true
+//                        .updateInfo(versionInfo.get("updateInfo"))  //更新日志信息 String
+//                        .downloadBy(UpdateAppUtils.DOWNLOAD_BY_APP) //下载方式：app下载、手机浏览器下载。默认app下载
+//                        .isForce(false) //是否强制更新，默认false 强制更新情况下用户不同意更新则不能使用app
+//                        .update();
+//            }
             return false;
         }
     });
@@ -119,16 +119,16 @@ public class LiveActivityRel extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_rel);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Map<String, String> versionInfo = HttpUtils.getVersionInfo();
-                Message message = Message.obtain();
-                message.obj = versionInfo;
-                message.what = 1;
-                handler.sendMessage(message);
-            }
-        }).start();
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Map<String, String> versionInfo = HttpUtils.getVersionInfo();
+//                Message message = Message.obtain();
+//                message.obj = versionInfo;
+//                message.what = 1;
+//                handler.sendMessage(message);
+//            }
+//        }).start();
         initUI();
         initDialog();
         initVideo();
